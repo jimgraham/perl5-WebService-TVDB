@@ -2,6 +2,9 @@ use strict;
 use warnings;
 
 package WebService::TVDB;
+{
+  $WebService::TVDB::VERSION = '1.133200';
+}
 
 # ABSTRACT: Interface to http://thetvdb.com/
 
