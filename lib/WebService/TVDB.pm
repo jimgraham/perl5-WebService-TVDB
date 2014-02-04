@@ -51,14 +51,20 @@ sub new {
 }
 
 sub search {
-    my ( $self, $term ) = @_;
+    my ( $self, $term, $year ) = @_;
 
     unless ($term) {
         die 'search term is required';
     }
 
     my $url = sprintf( SEARCH_URL,
-        uri_escape($term), $languages->{ $self->language }->{abbreviation} );
+             uri_escape($term), $languages->{ $self->language }->{abbreviation} );
+        
+    if ( $year)
+    {
+        $url .= "&year=$year";
+    }
+            
     my $agent = $LWP::Simple::ua->agent;
     $LWP::Simple::ua->agent("WebService::TVDB/$WebService::TVDB::VERSION");
     my $xml     = LWP::Simple::get($url);
